@@ -15,16 +15,23 @@ $ npm i && npm i github:joje6/x-talk-connect
 ## 실행
 
 ### 개발모드
+> `http://localhost:9000`
+
 ```sh
 $ npm run dev
 ```
 
 ### 프러덕션모드
+> `http://localhost:9000`
+
 ```sh
-$ npm run dist:web && npm start
+$ npm run dist:web
+$ npm start
 ```
 
 ### 스토리북
+> `http://localhost:9001`
+ 
 ```sh
 $ npm run storybook
 ```

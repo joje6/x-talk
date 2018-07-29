@@ -88,7 +88,6 @@ module.exports = merge.strategy({
       template: path.join(asset, 'index.html')
     }),
     new CopyWebpackPlugin([
-      { from: path.join(asset, 'images'), to: path.join(dist, 'images') },
       { from: path.join(asset, 'favicon.png'), to: dist }
     ])
   ]
