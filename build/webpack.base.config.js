@@ -111,7 +111,7 @@ module.exports = {
         ]
       }, {
         test: /\.(jpg|png|woff|woff2|gif|eot|ttf|svg)\??.*$/,
-        loader: 'url-loader?limit=16384'
+        loader: 'url-loader'
       }, {
         test: /\.(html|tpl)$/,
         loader: 'html-loader'

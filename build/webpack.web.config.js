@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs-extra');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -19,24 +18,27 @@ module.exports = merge.strategy({
   output: 'replace'
 })(base, {
   entry: {
+    vendor: ['vue', 'x-router'],
+    acc: ['moment', 'sweetalert'],
     app: path.resolve(src, 'listen.js')
   },
   output: {
     path: path.join(dist, 'js'),
     publicPath: '/js',
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js'
+    filename: '[name].js',
+    chunkFilename: '[name].js'
   },
   performance: {
     hints: 'warning'
   },
+  resolve: {
+    alias: {
+      vue$: 'vue'
+    }
+  },
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
-        cache: true,
-        parallel: false,
-        sourceMap: true,
-        extractComments: true,
         uglifyOptions: {
           compress: {
             warnings: false,
@@ -44,25 +46,35 @@ module.exports = merge.strategy({
           },
           mangle: true,
           beautify: false,
-        }
+        },
+        parallel: true,
+        sourceMap: false
       })
     ],
     splitChunks: {
       chunks: 'async',
-      minSize: 30 * 1024,
-      maxSize: 100 * 1024,
+      minSize: 30000,
+      maxSize: 0,
       minChunks: 1,
-      maxAsyncRequests: 5,
+      maxAsyncRequests: 2,
       maxInitialRequests: 3,
       automaticNameDelimiter: '~',
       name: true,
       cacheGroups: {
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10
+        vendor: {
+          chunks: 'initial',
+          name: 'vendor',
+          test: 'vendor',
+          enforce: true
+        },
+        acc: {
+          chunks: 'initial',
+          name: 'acc',
+          test: 'acc',
+          enforce: true
         },
         default: {
-          minChunks: 1,
+          minChunks: 2,
           priority: -20,
           reuseExistingChunk: true
         }

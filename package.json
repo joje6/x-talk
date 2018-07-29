@@ -12,7 +12,7 @@
     "start": "static-server docs -p 9000 --not-found ./docs/index.html -i index.html -f",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --port 9000 --config build/webpack.dev.config.js",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "storybookoutput": "build-storybook -c .storybook -o .out",
+    "dist:storybook": "build-storybook -c .storybook -o storybook",
     "dist:web": "cross-env NODE_ENV=production webpack --config build/webpack.web.config.js",
     "babel": "rm -rf ./lib && babel ./src -d ./lib --source-maps inline --copy-files",
     "watch": "rm -rf ./lib && babel ./src -d ./lib --source-maps inline --copy-files -w",
