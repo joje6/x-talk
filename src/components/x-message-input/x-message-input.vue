@@ -58,7 +58,8 @@ export default {
     send() {
       const channelid = this.channelid;
       const message = this.message;
-      if( !channelid || !message ) return;
+      if( !channelid ) return console.error('missing channelid');
+      if( !message ) return console.error('missing message');
 
       this.$nextTick(async () => {
         this.message = '';

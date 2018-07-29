@@ -1,17 +1,22 @@
-import moment from 'moment';
-import Vue from 'vue';
-import XSignIn from './x-signin/x-signin.vue';
+import PageChannel from './page-channel/page-channel.vue';
+import PageChannels from './page-channels/page-channels.vue';
+import PageSignin from './page-signin/page-signin.vue';
+import XButton from './x-button/x-button.vue';
 import XMedia from './x-media/x-media.vue';
-import XMessageList from './x-message-list/x-message-list.vue';
 import XMessageInput from './x-message-input/x-message-input.vue';
+import XMessageList from './x-message-list/x-message-list.vue';
+import XSignIn from './x-signin/x-signin.vue';
+import XTitlebar from './x-titlebar/x-titlebar.vue';
 
-Vue.filter('datetime', (value, format) => {
-  return value && moment(value).format(format || 'YYYY.MM.DD');
-});
 
 export {
-  XSignIn,
+  PageChannel,
+  PageChannels,
+  PageSignin,
+  XButton,
   XMedia,
+  XMessageInput,
   XMessageList,
-  XMessageInput
+  XSignIn,
+  XTitlebar
 };

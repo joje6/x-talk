@@ -1,7 +1,7 @@
 <template>
   <div class="page-signin">
     <div class="page-signin-body">
-      <XSignin email="test@test.com" @signin="signin" @error="error" />
+      <x-signin email="test@test.com" @signin="signin" @error="error" />
     </div>
   </div>
 </template>
@@ -27,7 +27,6 @@ export default {
 </script>
 
 <style lang="less">
-  @import "~bootstrap-theme-attrs/less/variables";
   @import "~@/src/less/variables";
 
   .page-signin {

@@ -5,14 +5,14 @@
 
       <div v-if="message.type == 'message' && message.user.id !== user.id" class="x-message-list-message-other">
         <div class="x-message-list-message-user">{{ message.user.email }}</div>
-        <div class="x-message-list-message-box">{{ message.text }}</div>
-        <div class="x-message-list-message-date">{{ message.date | datetime('MM월 DD일 HH시 mm분') }}</div>
+        <div class="x-message-list-message-box" v-html="message.text" />
+        <div class="x-message-list-message-date">{{ message.date | datetime('M월 D일 - A H시 m분') }}</div>
       </div>
 
       <div v-if="message.type == 'message' && message.user.id === user.id" class="x-message-list-message-self">
-        <div v-if="message.text" class="x-message-list-message-box">{{ message.text }}</div>
-        <div v-if="message.url" class="x-message-list-message-box"><img :src="message.url | url"></div>
-        <div class="x-message-list-message-date">{{ message.date | datetime('MM월 DD일 HH시 mm분') }}</div>
+        <div v-if="message.text" class="x-message-list-message-box" v-html="tobr(message.text)" />
+        <div v-if="message.url" class="x-message-list-message-box" v-html="tagify(message.url)" />
+        <div class="x-message-list-message-date">{{ message.date | datetime('M월 D일 - A h시 m분') }}</div>
       </div>
     </div>
   </div>
@@ -20,13 +20,14 @@
 
 <script>
 import connect from 'x-talk-connect';
+import moment from 'moment';
 
 export default {
   name: 'XMessageList',
   components: {},
   filters: {
-    url(value) {
-      return connect.resolve(value);
+    datetime(value, format) {
+      return value && moment(value).format(format);
     }
   },
   props: {
@@ -46,6 +47,13 @@ export default {
     this.refresh();
   },
   methods: {
+    tagify(url) {
+      url = connect.resolve(url);
+      return `<img src="${url}">`;
+    },
+    tobr(text) {
+      return text && text.split('<').join('&lt;').split('<').join('&gt;').split('\n').join('<br>');
+    },
     connect() {
       if( !this.channelid ) return console.error('missing channelid');
 
@@ -76,6 +84,11 @@ export default {
 
         this.user = user;
         channelinfo.messages && this.messages.push(...channelinfo.messages);
+
+        this.$emit('refresh', {
+          user,
+          channelinfo
+        });
         console.log('user', user);
         console.log('channel', channelinfo.messages);
         console.log('this.messages', this.messages);
@@ -108,11 +121,13 @@ export default {
       background-color: white;
       padding: 6px 12px;
       max-width: 45%;
+      text-align: left;
 
       img {
         display: block;
         width: 100%;
         min-width: 150px;
+        margin: 6px 0;
       }
     }
 

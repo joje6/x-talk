@@ -1,19 +1,22 @@
 <template>
   <div class="page-channels">
-    <XTitlebar title="X TALK">
+    <x-titlebar>
       <div slot="left">
-        <XButton title="로그아웃" @click="signout"><i class="icon-chevron-left" /></XButton>
+        <x-button title="로그아웃" @click="signout"><i class="icon-chevron-left" /></x-button>
+      </div>
+      <div slot="center">
+        <b>X</b>TALK
       </div>
       <div slot="right">
-        <XButton title="채널 개설하기" @click="create"><i class="icon-plus" /></XButton>
+        <x-button title="채널 개설하기" @click="create"><i class="icon-plus" /></x-button>
       </div>
-    </XTitlebar>
+    </x-titlebar>
 
     <div v-if="loaded">
       <div v-if="channels.length">
-        <XMedia v-for="channel in channels" :key="channel.id" :title="channel.title" :thumbnail="channel.thumbnail" @select="join(channel.id)">
-          <span slot="right">{{ channel.created | datetime('HH:mm') }}</span>
-        </XMedia>
+        <x-media v-for="channel in channels" :key="channel.id" :title="channel.title" :thumbnail="channel.thumbnail" @select="join(channel.id)">
+          <span slot="right"><i class="icon-chevron-right" /></span>
+        </x-media>
       </div>
       <div v-if="!channels.length">
         <div class="page-channels-empty">
@@ -120,7 +123,6 @@ export default {
   @import "~@/src/less/variables";
 
   .page-channels {
-
     .page-channels-empty {
       text-align: center;
       padding: 200px 0;

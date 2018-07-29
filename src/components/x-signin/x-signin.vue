@@ -22,26 +22,20 @@ import connect from 'x-talk-connect';
 export default {
   name: 'XSignin',
   components: {},
-  props: {
-    email: {
-      type: String,
-      default: ''
-    }
-  },
   data() {
     return {
-      error: null
+      email: 'test@test'
     };
-  },
-  computed: {
   },
   methods: {
     signin(e) {
+      console.log('signin');
       this.$nextTick(async () => {
         try {
           const session = await connect.signin({
             email: this.email
           });
+          console.log('session', session);
 
           if( !session ) throw new Error('세션을 찾을 수 없습니다.');
 
@@ -53,7 +47,7 @@ export default {
         }
       });
 
-      e.preventDefault();
+      e && e.preventDefault();
     }
   }
 };

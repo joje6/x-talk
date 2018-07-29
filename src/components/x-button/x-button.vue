@@ -7,17 +7,6 @@
 <script>
 export default {
   name: 'XButton',
-  components: {},
-  props: {
-    icon: {
-      type: String,
-      default: ''
-    },
-    label: {
-      type: String,
-      default: ''
-    }
-  },
   methods: {
     click(e) {
       this.$emit('click', e);

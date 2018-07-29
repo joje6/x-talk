@@ -3,8 +3,8 @@
     <div class="x-titlebar-left">
       <slot name="left" />
     </div>
-    <div class="x-titlebar-title">
-      {{ title }}
+    <div class="x-titlebar-center">
+      <slot name="center" />
     </div>
     <div class="x-titlebar-right">
       <slot name="right" />
@@ -14,13 +14,7 @@
 
 <script>
 export default {
-  name: 'XTitlebar',
-  props: {
-    title: {
-      type: String,
-      default: ''
-    }
-  }
+  name: 'XTitlebar'
 };
 </script>
 
@@ -51,11 +45,13 @@ export default {
       text-align: right;
     }
 
-    .x-titlebar-title {
+    .x-titlebar-center {
       display: table-cell;
       vertical-align: middle;
       text-align: center;
       line-height: 50px;
+      font-weight: lighter;
+      letter-spacing: 1px;
     }
   }
 </style>

@@ -8,10 +8,10 @@ module.exports = function(config) {
     basePath: __dirname,
     frameworks: ['jasmine'],
     files: [
-      'specs/**/*.spec.js'
+      'specs/**/x-message-list.spec.js'
     ],
     preprocessors: {
-      'specs/**/*.spec.js': ['webpack', 'sourcemap']
+      'specs/**/x-message-list.spec.js': ['webpack', 'sourcemap']
     },
     webpack: webpackconfig,
     webpackMiddleware: {
@@ -37,10 +37,10 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: true,
+    singleRun: false,
     concurrency: Infinity,
     browserConsoleLogOptions: {
       terminal: true
     }
-  })
-}
+  });
+};

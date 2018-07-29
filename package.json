@@ -17,8 +17,8 @@
     "babel": "rm -rf ./lib && babel ./src -d ./lib --source-maps inline --copy-files",
     "watch": "rm -rf ./lib && babel ./src -d ./lib --source-maps inline --copy-files -w",
     "dist": "npm run babel && cross-env NODE_ENV=production webpack --config build/webpack.dist.config.js",
-    "lint": "eslint --ext .js src/*/**/*.js",
-    "lint:fix": "eslint --fix --ext .js src/**/*.js",
+    "lint": "eslint --ext .js,.vue src/",
+    "lint:fix": "eslint --ext .js,.vue src/ --fix",
     "test": "rm -rf ./.test && karma start test/karma.conf.js --reporters html,dots"
   },
   "peerDependencies": {
@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
-    "bootstrap-theme-attrs": "^0.3.27",
     "moment": "^2.22.2",
     "sweetalert": "^2.1.0",
     "x-router": "^0.5.23",
@@ -38,6 +37,7 @@
     "@storybook/addon-links": "^4.0.0-alpha.14",
     "@storybook/addon-notes": "^4.0.0-alpha.14",
     "@storybook/vue": "^4.0.0-alpha.14",
+    "avoriaz": "^6.3.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.6",
     "babel-loader": "^7.1.5",

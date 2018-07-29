@@ -1,17 +1,20 @@
 <template>
   <div class="page-channel">
-    <XTitlebar :title="title">
+    <x-titlebar>
       <div slot="left">
-        <XButton title="목록으로" @click="channels"><i class="icon-chevron-left" /></XButton>
+        <x-button title="목록으로" @click="channels"><i class="icon-chevron-left" /></x-button>
+      </div>
+      <div slot="center">
+        {{ title }}
       </div>
       <div slot="right">
-        <XButton title="초대하기" @click="invite"><i class="icon-plus" /></XButton>
-        <XButton title="나가기" @click="leave"><i class="icon-x" /></XButton>
+        <x-button title="초대하기" @click="invite"><i class="icon-plus" /></x-button>
+        <x-button title="나가기" @click="leave"><i class="icon-x" /></x-button>
       </div>
-    </XTitlebar>
+    </x-titlebar>
 
-    <XMessageList :channelid="channelid" />
-    <XMessageInput :channelid="channelid" />
+    <x-message-list :channelid="channelid" />
+    <x-message-input :channelid="channelid" />
   </div>
 </template>
 

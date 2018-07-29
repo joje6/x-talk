@@ -1,16 +1,26 @@
-import app from './app';
 import {} from './less/index.less';
+import app from './app';
 import {
-  XSignIn,
-  XList,
+  PageChannel,
+  PageChannels,
+  PageSignin,
+  XButton,
+  XMedia,
+  XMessageInput,
   XMessageList,
-  XMessageInput
+  XSignIn,
+  XTitlebar
 } from './components';
 
 export {
   app,
-  XSignIn,
-  XList,
+  PageChannel,
+  PageChannels,
+  PageSignin,
+  XButton,
+  XMedia,
+  XMessageInput,
   XMessageList,
-  XMessageInput
+  XSignIn,
+  XTitlebar
 };
