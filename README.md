@@ -71,6 +71,9 @@ $ npm run dist:storybook
 ## 테스트
 > 카르마 테스트를 실행합니다. 테스트 결과 리포트 경로 : `.test/components`
 
+
+테스트 전 서버 실행이 필요합니다. [서버 설치 및 실행 방법](https://github.com/joje6/x-talk-server)
+
 ```sh
 $ npm test
 ```
