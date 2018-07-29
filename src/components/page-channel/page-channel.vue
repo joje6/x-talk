@@ -1,6 +1,6 @@
 <template>
   <div class="page-channel">
-    <XTitlebar title="X TALK">
+    <XTitlebar :title="title">
       <div slot="left">
         <XButton title="목록으로" @click="channels"><i class="icon-chevron-left" /></XButton>
       </div>
@@ -9,10 +9,6 @@
         <XButton title="나가기" @click="leave"><i class="icon-x" /></XButton>
       </div>
     </XTitlebar>
-
-    <div v-if="channelinfo">
-      {{ channelinfo }}
-    </div>
 
     <XMessageList :channelid="channelid" />
     <XMessageInput :channelid="channelid" />
@@ -40,6 +36,12 @@ export default {
       channel: null,
       channelinfo: null
     };
+  },
+  computed: {
+    title() {
+      const channelinfo = this.channelinfo;
+      return channelinfo && channelinfo.title;
+    }
   },
   mounted() {
     this.refresh();

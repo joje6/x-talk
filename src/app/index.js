@@ -1,13 +1,8 @@
 import Vue from 'vue';
-import moment from 'moment';
 import xrouter from 'x-router';
 import PageChannel from '../components/page-channel/page-channel.vue';
 import PageChannels from '../components/page-channels/page-channels.vue';
 import PageSignin from '../components/page-signin/page-signin.vue';
-
-Vue.filter('date', (value, format) => {
-  return value && moment(value).format(format || 'MM.DD HH:mm');
-});
 
 const app = xrouter()
   .get('/', 'signin')

@@ -1,7 +1,10 @@
 <template>
   <div class="x-message-input">
     <div class="x-message-input-box">
-      <textarea v-model="message" :disabled="!channelid" @keyup.enter="enter" />
+      <textarea v-model="message" :disabled="!channelid" @keypress.enter="enter" />
+    </div>
+    <div :disabled="!message" class="x-message-input-file" @click="sendimage">
+      <i class="icon-image" />
     </div>
     <div :disabled="!message" class="x-message-input-button" @click="send">
       전송하기
@@ -30,17 +33,38 @@ export default {
     enter(e) {
       if( !e.shiftKey ) this.send();
     },
+    sendimage() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.onchange = () => {
+        const formdata = new window.FormData();
+        formdata.append('file', input.files[0]);
+
+        (async () => {
+          try {
+            const channelid = this.channelid;
+            const channel = connect.channel(channelid);
+            await channel.sendimage(formdata, (progress) => {
+              console.log(`${progress}% uploaded`);
+            });
+            this.$emit('sendimage', input.files[0]);
+          } catch(err) {
+            this.$emit('sendimageerror', err);
+          }
+        })();
+      };
+      input.click();
+    },
     send() {
       const channelid = this.channelid;
       const message = this.message;
       if( !channelid || !message ) return;
 
-      this.message = '';
       this.$nextTick(async () => {
-        try {
-          const channel = await connect.channel(channelid);
-          if( !channel ) return;
+        this.message = '';
 
+        try {
+          const channel = connect.channel(channelid);
           await channel.send(message);
           this.$emit('send', message);
         } catch(err) {
@@ -82,12 +106,26 @@ export default {
       }
     }
 
+    .x-message-input-file {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      width: 50px;
+      cursor: pointer;
+
+      i {
+        font-size: 40px;
+        line-height: 60px;
+        color: #999;
+      }
+    }
+
     .x-message-input-button {
       display: table-cell;
-      cursor: pointer;
-      width: 100px;
-      text-align: center;
       vertical-align: middle;
+      text-align: center;
+      width: 100px;
+      cursor: pointer;
       background-color: @brand-info;
       margin: 8px;
       font-size: 0.9em;

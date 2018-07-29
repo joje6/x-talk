@@ -1,5 +1,5 @@
 <template>
-  <div class="x-page-channels">
+  <div class="page-channels">
     <XTitlebar title="X TALK">
       <div slot="left">
         <XButton title="로그아웃" @click="signout"><i class="icon-chevron-left" /></XButton>
@@ -12,13 +12,13 @@
     <div v-if="loaded">
       <div v-if="channels.length">
         <XMedia v-for="channel in channels" :key="channel.id" :title="channel.title" :thumbnail="channel.thumbnail" @select="join(channel.id)">
-          <span slot="right">{{ channel.created | date }}</span>
+          <span slot="right">{{ channel.created | datetime('HH:mm') }}</span>
         </XMedia>
       </div>
       <div v-if="!channels.length">
-        <div class="x-page-channels-empty">
-          <div class="x-page-channels-empty-icon"><i class="icon-alert-circle" /></div>
-          <div class="x-page-channels-empty-text">개설된 채널이 없습니다.</div>
+        <div class="page-channels-empty">
+          <div class="page-channels-empty-icon"><i class="icon-alert-circle" /></div>
+          <div class="page-channels-empty-text">개설된 채널이 없습니다.</div>
         </div>
       </div>
     </div>
@@ -119,18 +119,18 @@ export default {
 <style lang="less">
   @import "~@/src/less/variables";
 
-  .x-page-channels {
+  .page-channels {
 
-    .x-page-channels-empty {
+    .page-channels-empty {
       text-align: center;
       padding: 200px 0;
 
-      .x-page-channels-empty-icon {
+      .page-channels-empty-icon {
         font-size: 120px;
         color: @text-color;
       }
 
-      .x-page-channels-empty-text {
+      .page-channels-empty-text {
         font-size: 1.25em;
         font-weight: normal;
         color: fade(@text-color, 80%);
