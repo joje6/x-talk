@@ -3,7 +3,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const baseconfig = require('../build/webpack.base.config.js');
 
-module.exports = (storybookBaseConfig, configType) => {
+module.exports = (storybookBaseConfig) => {
   storybookBaseConfig.module = baseconfig.module;
   storybookBaseConfig.resolve.alias['@'] = path.resolve(__dirname, '..');
   storybookBaseConfig.plugins.push(...[

@@ -5,7 +5,8 @@
 
       <div v-if="message.type == 'message' && message.user.id !== user.id" class="x-message-list-message-other">
         <div class="x-message-list-message-user">{{ message.user.email }}</div>
-        <div class="x-message-list-message-box" v-html="message.text" />
+        <div v-if="message.text" class="x-message-list-message-box" v-html="tobr(message.text)" />
+        <div v-if="message.url" class="x-message-list-message-box" v-html="tagify(message.url)" />
         <div class="x-message-list-message-date">{{ message.date | datetime('M월 D일 - A H시 m분') }}</div>
       </div>
 

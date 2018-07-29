@@ -31,11 +31,14 @@ export default {
   name: 'PageChannel',
   components: { XMessageInput, XMessageList, XTitlebar, XButton },
   props: {
+    channelid: {
+      type: String,
+      default: null
+    }
   },
   data() {
     return {
       loaded: false,
-      channelid: null,
       channel: null,
       channelinfo: null
     };

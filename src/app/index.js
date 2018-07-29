@@ -37,7 +37,7 @@ const app = xrouter()
   })
   .get('/channel/:channelid', (req) => {
     const component = new Vue(PageChannel);
-    component.channelid = req.params.channelid;
+    Vue.set(component, 'channelid', req.params.channelid);
 
     const target = document.querySelector('body > #page');
     target.innerHTML = '';

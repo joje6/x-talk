@@ -1,4 +1,8 @@
 import { configure } from '@storybook/vue';
 import { stories } from './stories';
 
-configure(stories, module);
+(async () => {
+  const resultstories = await stories();
+
+  configure(resultstories, module);
+})();
