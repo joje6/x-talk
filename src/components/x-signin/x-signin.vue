@@ -22,28 +22,38 @@ import connect from 'x-talk-connect';
 export default {
   name: 'XSignin',
   components: {},
+  props: {
+    dataEmail: {
+      type: String,
+      default: ''
+    }
+  },
   data() {
     return {
-      email: 'test@test'
+      email: this.dataEmail
     };
+  },
+  watch: {
+    email(value) {
+      this.$emit('emailchange', value);
+    }
+  },
+  mounted() {
   },
   methods: {
     signin(e) {
-      console.log('signin');
       this.$nextTick(async () => {
         try {
           const session = await connect.signin({
             email: this.email
           });
-          console.log('session', session);
+          //console.log('session', session);
 
           if( !session ) throw new Error('세션을 찾을 수 없습니다.');
 
           this.$emit('signin', session);
-        } catch(err) {
-          console.error(err);
-          this.error = err;
-          this.$emit('error', err);
+        } catch(error) {
+          this.$emit('error', error);
         }
       });
 
@@ -54,8 +64,11 @@ export default {
 </script>
 
 <style lang="less">
+  @import "~@/src/less/variables";
+
   .x-signin {
     padding: 20px;
+    background-color: @brand-primary;
 
     .x-signin-logo {
       text-indent: -9999px;

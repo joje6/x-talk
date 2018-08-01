@@ -17,14 +17,14 @@ module.exports = merge.strategy({
   entry: 'replace',
   output: 'replace'
 })(base, {
+  mode: 'production',
   entry: {
     vendor: ['vue', 'x-router'],
-    acc: ['moment', 'sweetalert'],
     app: path.resolve(src, 'listen.js')
   },
   output: {
     path: path.join(dist, 'js'),
-    publicPath: '/js',
+    publicPath: '/js/',
     filename: '[name].js',
     chunkFilename: '[name].js'
   },
@@ -33,7 +33,7 @@ module.exports = merge.strategy({
   },
   resolve: {
     alias: {
-      vue$: 'vue'
+      vue$: 'vue/dist/vue.runtime.esm.js'
     }
   },
   optimization: {
@@ -41,7 +41,7 @@ module.exports = merge.strategy({
       new UglifyJsPlugin({
         uglifyOptions: {
           compress: {
-            warnings: false,
+            warnings: true,
             unused: true
           },
           mangle: true,
@@ -65,12 +65,6 @@ module.exports = merge.strategy({
           chunks: 'initial',
           name: 'vendor',
           test: 'vendor',
-          enforce: true
-        },
-        acc: {
-          chunks: 'initial',
-          name: 'acc',
-          test: 'acc',
           enforce: true
         },
         default: {

@@ -7,7 +7,6 @@ describe('XSignin 컴포넌트', () => {
   it('컴포넌트 설정 체크', () => {
     expect(typeof XSignin).toBe('object');
     expect(XSignin.name).toBe('XSignin');
-    expect(typeof XSignin.data().email).toBe('string');
   });
 
   it('인스턴스 상태 체크', () => {
@@ -26,7 +25,7 @@ describe('XSignin 컴포넌트', () => {
   });
 
   it('데이터 전달 체크', (done) => {
-    vm.email = 'id@email';
+    Vue.set(vm, 'dataEmail', 'id@email');
 
     vm.$nextTick(() => {
       expect(vm.email).toBe('id@email');
@@ -43,7 +42,7 @@ describe('XSignin 컴포넌트', () => {
       done();
     });
 
-    vm.email = 'some@email';
+    Vue.set(vm, 'dataEmail', 'some@email');
     vm.$nextTick(() => {
       vm.signin();
     });

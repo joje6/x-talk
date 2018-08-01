@@ -1,20 +1,9 @@
 <template>
-  <div class="page-channel">
-    <x-titlebar>
-      <div slot="left">
-        <x-button title="목록으로" @click="channels"><i class="icon-chevron-left" /></x-button>
-      </div>
-      <div slot="center">
-        {{ title }}
-      </div>
-      <div slot="right">
-        <x-button title="초대하기" @click="invite"><i class="icon-plus" /></x-button>
-        <x-button title="나가기" @click="leave"><i class="icon-x" /></x-button>
-      </div>
-    </x-titlebar>
-
-    <x-message-list :channelid="channelid" />
-    <x-message-input :channelid="channelid" />
+  <div class="x-channel">
+    <div v-if="channelid">
+      <x-message-list :channelid="channelid" />
+      <x-message-input :channelid="channelid" />
+    </div>
   </div>
 </template>
 
@@ -24,14 +13,18 @@ import XTitlebar from '../x-titlebar/x-titlebar.vue';
 import XMessageInput from '../x-message-input/x-message-input.vue';
 import XMessageList from '../x-message-list/x-message-list.vue';
 import connect from 'x-talk-connect';
-import xrouter from 'x-router';
 import swal from 'sweetalert';
 
 export default {
-  name: 'PageChannel',
-  components: { XMessageInput, XMessageList, XTitlebar, XButton },
+  name: 'XChannel',
+  components: {
+    XButton,
+    XTitlebar,
+    XMessageInput,
+    XMessageList
+  },
   props: {
-    channelid: {
+    dataChannelid: {
       type: String,
       default: null
     }
@@ -44,6 +37,9 @@ export default {
     };
   },
   computed: {
+    channelid() {
+      return this.dataChannelid;
+    },
     title() {
       const channelinfo = this.channelinfo;
       return channelinfo && channelinfo.title;
@@ -53,9 +49,6 @@ export default {
     this.refresh();
   },
   methods: {
-    channels() {
-      xrouter.href('/channel');
-    },
     leave() {
       if( !this.channel ) return;
 
@@ -71,26 +64,34 @@ export default {
         try {
           await this.channel.leave();
         } catch(err) {
-          console.warn('leave error', err);
-        } finally{
-          xrouter.href('/channel');
+          err.type = 'leave';
+          this.$emit('error', err);
+        } finally {
+          this.$emit('leave');
+          this.disconnect();
         }
       });
+    },
+    disconnect(message) {
+      this.$emit('disconnect', message);
     },
     refresh() {
       this.$nextTick(async () => {
         try {
           const session = await connect.session();
-          if( !session ) return xrouter.href('/');
+          if( !session ) return this.disconnect();
 
           const channelid = this.channelid;
           if( !channelid ) throw new Error('missing channelid');
 
           const channel = this.channel = connect.channel(channelid);
-          this.channelinfo = await channel.join();
+          const channelinfo = this.channelinfo = await channel.join();
+          this.$emit('load', channelinfo);
         } catch(err) {
-          console.warn(err);
+          err.type = 'load';
+          this.$emit('error', err);
           swal('채널을 불러올 수 없습니다.', err.message, 'error');
+          this.disconnect();
         } finally{
           this.loaded = true;
         }
@@ -112,9 +113,11 @@ export default {
         if( !email ) return;
 
         try {
-          await this.channel.invite(email);
+          const result = await this.channel.invite(email);
+          this.$emit('invite', result);
         } catch(err) {
-          console.warn(err);
+          err.type = 'invite';
+          this.$emit('error', err);
           swal('초대할 수 없습니다.', err.message, 'error');
         }
       });
@@ -122,10 +125,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-  @import "~@/src/less/variables";
-
-  .page-channel {
-  }
-</style>
