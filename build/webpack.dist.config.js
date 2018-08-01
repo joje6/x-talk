@@ -26,6 +26,11 @@ module.exports = merge.strategy({
   performance: {
     hints: 'warning'
   },
+  resolve: {
+    alias: {
+      vue$: 'vue/dist/vue.runtime.esm.js'
+    }
+  },
   optimization: {
     minimizer: [
       new UglifyJsPlugin({

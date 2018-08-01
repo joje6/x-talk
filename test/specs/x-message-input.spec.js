@@ -11,6 +11,7 @@ describe('XMessageInput 컴포넌트', () => {
       channel = await connect.create({
         title: '테스트 채널'
       });
+      console.log('channel', channel);
       Vue.set(vm, 'channelid', channel.id);
       done();
     })();

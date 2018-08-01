@@ -1,3 +1,4 @@
-import { app } from './index';
+import app from './app';
+import './less/index.less';
 
 app.listen();

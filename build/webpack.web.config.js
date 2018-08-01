@@ -17,6 +17,7 @@ module.exports = merge.strategy({
   entry: 'replace',
   output: 'replace'
 })(base, {
+  mode: 'production',
   entry: {
     vendor: ['vue', 'x-router'],
     acc: ['moment', 'sweetalert'],
@@ -33,7 +34,7 @@ module.exports = merge.strategy({
   },
   resolve: {
     alias: {
-      vue$: 'vue'
+      vue$: 'vue/dist/vue.runtime.esm.js'
     }
   },
   optimization: {
@@ -41,7 +42,7 @@ module.exports = merge.strategy({
       new UglifyJsPlugin({
         uglifyOptions: {
           compress: {
-            warnings: false,
+            warnings: true,
             unused: true
           },
           mangle: true,
