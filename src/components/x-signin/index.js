@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import VueCustomElement from 'vue-custom-element';
-import XSignin from './x-signin.vue';
+import wrapper from '@vue/web-component-wrapper';
+import Component from './x-signin.vue?shadow';
 
-!Vue.customElement && Vue.use(VueCustomElement);
-Vue.customElement('x-signin', XSignin);
+const CustomElement = wrapper(Vue, Component);
+window.customElements.define('x-signin', CustomElement);
 
-export default XSignin;
+export default Component;

@@ -66,6 +66,10 @@ export default {
 <style lang="less">
   @import "~@/src/less/variables";
 
+  :host {
+    border: 1px solid #aaa;
+  }
+
   .x-signin {
     padding: 20px;
     background-color: @brand-primary;

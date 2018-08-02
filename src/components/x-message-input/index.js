@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import VueCustomElement from 'vue-custom-element';
-import XMessageInput from './x-message-input.vue';
+import wrapper from '@vue/web-component-wrapper';
+import Component from './x-message-input.vue';
 
-!Vue.customElement && Vue.use(VueCustomElement);
-Vue.customElement('x-message-input', XMessageInput);
+const CustomElement = wrapper(Vue, Component);
+window.customElements.define('x-message-input', CustomElement);
 
-export default XMessageInput;
+export default Component;

@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import VueCustomElement from 'vue-custom-element';
-import XTitlebar from './x-titlebar.vue';
+import wrapper from '@vue/web-component-wrapper';
+import Component from './x-titlebar.vue';
 
-!Vue.customElement && Vue.use(VueCustomElement);
-Vue.customElement('x-titlebar', XTitlebar);
+const CustomElement = wrapper(Vue, Component);
+window.customElements.define('x-titlebar', CustomElement);
 
-export default XTitlebar;
+export default Component;

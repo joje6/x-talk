@@ -27,10 +27,17 @@ module.exports = {
             css: [
               {
                 loader: MiniCssExtractPlugin.loader
-              }, 'vue-style-loader', {
+              }, {
+                loader: 'vue-style-loader',
+                options: {
+                  shadowMode: true
+                }
+              }, {
                 loader: 'css-loader',
                 options: {
-                  sourceMap: true,
+                  modules: true,
+                  localIdentName: '[local]_[hash:base64:5]',
+                  sourceMap: true
                 }
               }, {
                 loader: 'postcss-loader',
@@ -40,10 +47,17 @@ module.exports = {
             less: [
               {
                 loader: MiniCssExtractPlugin.loader
-              }, 'vue-style-loader', {
+              }, {
+                loader: 'vue-style-loader',
+                options: {
+                  shadowMode: true
+                }
+              }, {
                 loader: 'css-loader',
                 options: {
-                  sourceMap: true,
+                  modules: true,
+                  localIdentName: '[local]_[hash:base64:5]',
+                  sourceMap: true
                 }
               }, {
                 loader: 'postcss-loader',
@@ -59,13 +73,13 @@ module.exports = {
           postLoaders: {
             html: 'babel-loader'
           },
-          sourceMap: true,
+          sourceMap: true
         }
       }, {
         test: /\.js$/,
         loader: 'babel-loader',
         options: {
-          sourceMap: true,
+          sourceMap: true
         },
         exclude: /node_modules/
       }, {
@@ -91,7 +105,7 @@ module.exports = {
           }, {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
+              sourceMap: true
             }
           }, {
             loader: 'postcss-loader',

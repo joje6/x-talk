@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import VueCustomElement from 'vue-custom-element';
-import XChannel from './x-channel.vue';
+import wrapper from '@vue/web-component-wrapper';
+import Component from './x-channel.vue';
 
-!Vue.customElement && Vue.use(VueCustomElement);
-Vue.customElement('x-channel', XChannel);
+const CustomElement = wrapper(Vue, Component);
+window.customElements.define('x-channel', CustomElement);
 
-export default XChannel;
+export default Component;

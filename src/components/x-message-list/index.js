@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import VueCustomElement from 'vue-custom-element';
-import XMessageList from './x-message-list.vue';
+import wrapper from '@vue/web-component-wrapper';
+import Component from './x-message-list.vue';
 
-!Vue.customElement && Vue.use(VueCustomElement);
-Vue.customElement('x-message-list', XMessageList);
+const CustomElement = wrapper(Vue, Component);
+window.customElements.define('x-message-list', CustomElement);
 
-export default XMessageList;
+export default Component;

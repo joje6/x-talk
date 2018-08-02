@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import VueCustomElement from 'vue-custom-element';
-import XButton from './x-button.vue';
+import wrapper from '@vue/web-component-wrapper';
+import Component from './x-button.vue';
 
-!Vue.customElement && Vue.use(VueCustomElement);
-Vue.customElement('x-button', XButton);
+const CustomElement = wrapper(Vue, Component);
+window.customElements.define('x-button', CustomElement);
 
-export default XButton;
+export default Component;

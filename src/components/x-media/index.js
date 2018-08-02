@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import VueCustomElement from 'vue-custom-element';
-import XMedia from './x-media.vue';
+import wrapper from '@vue/web-component-wrapper';
+import Component from './x-media.vue';
 
-!Vue.customElement && Vue.use(VueCustomElement);
-Vue.customElement('x-media', XMedia);
+const CustomElement = wrapper(Vue, Component);
+window.customElements.define('x-media', CustomElement);
 
-export default XMedia;
+export default Component;
