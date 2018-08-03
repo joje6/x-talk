@@ -63,12 +63,8 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="vless">
   @import "~@/src/less/variables";
-
-  :host {
-    border: 1px solid #aaa;
-  }
 
   .x-signin {
     padding: 20px;

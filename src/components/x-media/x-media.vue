@@ -42,7 +42,7 @@ export default {
 </script>
 
 
-<style lang="less">
+<style lang="vless">
   @import "~@/src/less/variables";
 
   .x-media {

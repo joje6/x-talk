@@ -54,6 +54,7 @@ export default xrouter()
         });
 
         const btn_signout = target.querySelector('.page-channels-btn-signout');
+        console.log('btn_signout', btn_signout);
         btn_signout.addEventListener('click', () => {
           (async () => {
             const confirm = await swal({

@@ -23,57 +23,7 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          loaders: {
-            css: [
-              {
-                loader: MiniCssExtractPlugin.loader
-              }, {
-                loader: 'vue-style-loader',
-                options: {
-                  shadowMode: true
-                }
-              }, {
-                loader: 'css-loader',
-                options: {
-                  modules: true,
-                  localIdentName: '[local]_[hash:base64:5]',
-                  sourceMap: true
-                }
-              }, {
-                loader: 'postcss-loader',
-                options: postcssconfig
-              }
-            ],
-            less: [
-              {
-                loader: MiniCssExtractPlugin.loader
-              }, {
-                loader: 'vue-style-loader',
-                options: {
-                  shadowMode: true
-                }
-              }, {
-                loader: 'css-loader',
-                options: {
-                  modules: true,
-                  localIdentName: '[local]_[hash:base64:5]',
-                  sourceMap: true
-                }
-              }, {
-                loader: 'postcss-loader',
-                options: postcssconfig
-              }, {
-                loader: 'less-loader',
-                options: {
-                  sourceMap: true
-                }
-              }
-            ]
-          },
-          postLoaders: {
-            html: 'babel-loader'
-          },
-          sourceMap: true
+          shadowMode: true
         }
       }, {
         test: /\.js$/,
@@ -86,7 +36,10 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: 'vue-style-loader',
+            options: {
+              shadowMode: true
+            }
           }, {
             loader: 'css-loader',
             options: {
@@ -95,6 +48,35 @@ module.exports = {
           }, {
             loader: 'postcss-loader',
             options: postcssconfig
+          }
+        ]
+      }, {
+        test: /\.vless$/,
+        use: [
+          {
+            loader: 'vue-style-loader',
+            options: {
+              shadowMode: true
+            }
+          }, {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          }, {
+            loader: 'postcss-loader',
+            options: postcssconfig
+          }, {
+            loader: 'less-loader',
+            options: {
+              sourceMap: true,
+              plugins: [
+                new CleanCSSPlugin({
+                  advanced: true,
+                  compatibility: '*'
+                })
+              ]
+            }
           }
         ]
       }, {

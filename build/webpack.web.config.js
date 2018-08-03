@@ -17,7 +17,6 @@ module.exports = merge.strategy({
   entry: 'replace',
   output: 'replace'
 })(base, {
-  mode: 'production',
   entry: {
     vendor: ['vue', 'x-router'],
     app: path.resolve(src, 'listen.js')

@@ -13,7 +13,6 @@ fs.emptyDirSync(target);
 module.exports = merge.strategy({
   output: 'replace'
 })(base, {
-  mode: 'production',
   entry: {
     app: src
   },
