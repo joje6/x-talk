@@ -30,8 +30,8 @@ export default xrouter()
           xrouter.href('/channel');
         });
 
-        xsignin.addEventListener('error', () => {
-          swal('로그인 실패', `오류내용 : ${err.message}`, 'error');
+        xsignin.addEventListener('error', (e) => {
+          swal('로그인 실패', `오류내용 : ${e.detail[0].message}`, 'error');
         });
       }).end();
     })();
