@@ -1,4 +1,4 @@
-import './less/index.less';
+import './css/index.css';
 import app from './app';
 
 export {

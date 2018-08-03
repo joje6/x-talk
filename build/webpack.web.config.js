@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const base = require('./webpack.base.config.js');
 
 const src = path.resolve(__dirname, '../src');

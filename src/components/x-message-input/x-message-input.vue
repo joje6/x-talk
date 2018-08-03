@@ -77,22 +77,20 @@ export default {
 };
 </script>
 
-<style lang="less">
-  @import "~@/src/less/variables";
-
+<style>
   .x-message-input {
     display: table;
     width: 100%;
     table-layout: fixed;
-    border-top: 1px solid @border-color;
+    border-top: 1px solid var(--border-color);
     padding: 5px;
     box-sizing: border-box;
 
-    .x-message-input-box {
+    & .x-message-input-box {
       display: table-cell;
       height: 60px;
 
-      textarea {
+      & textarea {
         display: block;
         width: 100%;
         height: 100%;
@@ -107,27 +105,27 @@ export default {
       }
     }
 
-    .x-message-input-file {
+    & .x-message-input-file {
       display: table-cell;
       vertical-align: middle;
       text-align: center;
       width: 50px;
       cursor: pointer;
 
-      i {
+      & i {
         font-size: 40px;
         line-height: 60px;
         color: #999;
       }
     }
 
-    .x-message-input-button {
+    & .x-message-input-button {
       display: table-cell;
       vertical-align: middle;
       text-align: center;
       width: 100px;
       cursor: pointer;
-      background-color: @brand-info;
+      background-color: var(--brand-info);
       margin: 8px;
       font-size: 0.9em;
       font-weight: bold;

@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanCSSPlugin = require('less-plugin-clean-css');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const pkg = require('../package.json');
 
@@ -10,12 +9,8 @@ const postcssconfig = require('./postcss.config.js');
 module.exports = {
   mode: process.env.NODE_ENV,
   node: {
-    __dirname: true,
-    __filename: true,
-    dns: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty'
+    __dirname: false,
+    __filename: false
   },
   module: {
     rules: [
@@ -23,39 +18,6 @@ module.exports = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          loaders: {
-            css: [
-              {
-                loader: MiniCssExtractPlugin.loader
-              }, 'vue-style-loader', {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: true,
-                }
-              }, {
-                loader: 'postcss-loader',
-                options: postcssconfig
-              }
-            ],
-            less: [
-              {
-                loader: MiniCssExtractPlugin.loader
-              }, 'vue-style-loader', {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: true,
-                }
-              }, {
-                loader: 'postcss-loader',
-                options: postcssconfig
-              }, {
-                loader: 'less-loader',
-                options: {
-                  sourceMap: true
-                }
-              }
-            ]
-          },
           postLoaders: {
             html: 'babel-loader'
           },
@@ -84,32 +46,6 @@ module.exports = {
           }
         ]
       }, {
-        test: /\.less$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          }, {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            }
-          }, {
-            loader: 'postcss-loader',
-            options: postcssconfig
-          }, {
-            loader: 'less-loader',
-            options: {
-              sourceMap: true,
-              plugins: [
-                new CleanCSSPlugin({
-                  advanced: true,
-                  compatibility: '*'
-                })
-              ]
-            }
-          }
-        ]
-      }, {
         test: /\.(jpg|png|woff|woff2|gif|eot|ttf|svg)\??.*$/,
         loader: 'url-loader'
       }, {
@@ -119,7 +55,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.json', '.vue', '.less'],
+    extensions: ['.js', '.json', '.vue', '.css'],
     mainFields: ['browser', 'main'],
     alias: {
       '@': path.resolve(__dirname, '..'),

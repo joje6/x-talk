@@ -15,9 +15,7 @@ export default {
 };
 </script>
 
-<style lang="less">
-  @import "~@/src/less/variables";
-
+<style>
   .x-button {
     display: inline-block;
     position: relative;

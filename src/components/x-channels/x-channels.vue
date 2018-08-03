@@ -95,23 +95,21 @@ export default {
 };
 </script>
 
-<style lang="less">
-  @import "~@/src/less/variables";
-
+<style>
   .x-channels {
-    .x-channels-empty {
+    & .x-channels-empty {
       text-align: center;
       padding: 200px 0;
 
-      .x-channels-empty-icon {
+      & .x-channels-empty-icon {
         font-size: 120px;
-        color: @text-color;
+        color: var(--text-color);
       }
 
-      .x-channels-empty-text {
+      & .x-channels-empty-text {
         font-size: 1.25em;
         font-weight: normal;
-        color: fade(@text-color, 80%);
+        color: color(var(--text-color) alpha(80%));
         line-height: 60px;
         text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
       }

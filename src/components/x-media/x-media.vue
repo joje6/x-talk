@@ -42,37 +42,35 @@ export default {
 </script>
 
 
-<style lang="less">
-  @import "~@/src/less/variables";
-
+<style>
   .x-media {
     cursor: pointer;
     position: relative;
     overflow: initial;
     padding: 10px 20px;
     margin: 0;
-    border-bottom: 1px solid @border-color;
+    border-bottom: 1px solid var(--border-color);
     transition: background-color .35s;
 
-    .x-media-left {
+    & .x-media-left {
       display: table-cell;
       vertical-align: middle;
       padding-right: 10px;
     }
 
-    .x-media-right {
+    & .x-media-right {
       display: table-cell;
       vertical-align: middle;
       padding-left: 10px;
     }
 
-    .x-media-body {
+    & .x-media-body {
       display: table-cell;
       vertical-align: middle;
       width: 10000px;
     }
 
-    .x-media-image {
+    & .x-media-image {
       width: 30px;
       position: relative;
       padding-top: 100%;
@@ -82,7 +80,7 @@ export default {
       background-repeat: no-repeat;
     }
 
-    .x-media-heading {
+    & .x-media-heading {
       font-size: 1em;
       font-weight: bold;
     }

@@ -7,6 +7,7 @@
   text-align: center;
   z-index: 1;
   display: block;
+
   &:before {
     content: "";
     display: inline-block;
@@ -14,18 +15,21 @@
     vertical-align: middle;
     margin-right: -.25em;
   }
-  .page-signin-body {
+
+  & .page-signin-body {
     display: inline-block;
     width: 450px;
     text-align: initial;
     vertical-align: middle;
-    background-color: @brand-primary;
+    background-color: var(--brand-primary);
   }
-  @media (max-width: @screen-xs) {
+
+  @media (--md-down) {
     &:before {
       display: none;
     }
-    .page-signin-body {
+
+    & .page-signin-body {
       display: block;
       width: 100%;
       height: 100%;

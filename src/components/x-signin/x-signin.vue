@@ -63,29 +63,27 @@ export default {
 };
 </script>
 
-<style lang="less">
-  @import "~@/src/less/variables";
-
+<style>
   .x-signin {
     padding: 20px;
-    background-color: @brand-primary;
+    background-color: var(--brand-primary);
 
-    .x-signin-logo {
+    & .x-signin-logo {
       text-indent: -9999px;
       background: url('./signin-logo.png?embed') no-repeat center;
       background-size: auto 100%;
       height: 200px;
     }
 
-    .x-signin-error {
+    & .x-signin-error {
       margin: 30px 0;
     }
 
-    .x-signin-form {
+    & .x-signin-form {
       margin: 25px 0;
     }
 
-    .x-signin-form-control {
+    & .x-signin-form-control {
       font-size: 0.9em;
       padding: 11px 14px;
       background: white;
@@ -94,7 +92,7 @@ export default {
         border-bottom: none;
       }
 
-      input {
+      & input {
         width: 100%;
         border: none;
         padding: 5px 0;
@@ -104,7 +102,7 @@ export default {
       }
     }
 
-    .x-signin-button {
+    & .x-signin-button {
       display: block;
       cursor: pointer;
       width: 100%;

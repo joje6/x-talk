@@ -19,9 +19,7 @@ export default {
 </script>
 
 
-<style lang="less">
-  @import "~@/src/less/variables";
-
+<style>
   .x-titlebar {
     display: table;
     table-layout: fixed;
@@ -29,23 +27,23 @@ export default {
     position: relative;
     color: white;
     background-color: #3C1E1F;
-    border-bottom: 1px solid darken(#3C1E1F, 20%);
+    border-bottom: 1px solid color(#3C1E1F blackness(20%));
     transition: background-color .35s;
 
-    .x-titlebar-left {
+    & .x-titlebar-left {
       display: table-cell;
       vertical-align: middle;
       padding-right: 10px;
     }
 
-    .x-titlebar-right {
+    & .x-titlebar-right {
       display: table-cell;
       vertical-align: middle;
       padding-left: 10px;
       text-align: right;
     }
 
-    .x-titlebar-center {
+    & .x-titlebar-center {
       display: table-cell;
       vertical-align: middle;
       text-align: center;

@@ -99,23 +99,21 @@ export default {
 };
 </script>
 
-<style lang="less">
-  @import "~@/src/less/variables";
-
+<style>
   .x-message-list {
     min-height: 300px;
     background-color: #A2C1D7;
     font-size: 14px;
     padding: 20px 0;
 
-    .x-message-list-message-info {
+    & .x-message-list-message-info {
       font-size: 0.8em;
       padding: 10px 0;
       color: #775743;
       text-align: center;
     }
 
-    .x-message-list-message-box {
+    & .x-message-list-message-box {
       display: inline-block;
       border: 1px solid #ccc;
       border-radius: 10px;
@@ -124,7 +122,7 @@ export default {
       max-width: 45%;
       text-align: left;
 
-      img {
+      & img {
         display: block;
         width: 100%;
         min-width: 150px;
@@ -132,24 +130,24 @@ export default {
       }
     }
 
-    .x-message-list-message-other {
+    & .x-message-list-message-other {
       margin-left: 15px;
     }
 
-    .x-message-list-message-user {
+    & .x-message-list-message-user {
       font-size: 0.8em;
     }
 
-    .x-message-list-message-self {
+    & .x-message-list-message-self {
       text-align: right;
       margin-right: 15px;
 
-      .x-message-list-message-box {
+      & .x-message-list-message-box {
         background-color:#FADD52;
       }
     }
 
-    .x-message-list-message-date {
+    & .x-message-list-message-date {
       font-size: 0.8em;
       padding: 5px 0 15px;
     }
